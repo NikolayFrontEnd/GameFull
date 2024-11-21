@@ -1,0 +1,120 @@
+.registrationForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Заполняет всю высоту экрана */
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* Мягкий голубой градиент */
+  font-family: 'Poppins', sans-serif; /* Подключенный шрифт */
+}
+.loginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Заполняет всю высоту экрана */
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* Мягкий голубой градиент */
+  font-family: 'Poppins', sans-serif; /* Подключенный шрифт */
+}
+/* Стили для fieldset */
+.fieldset {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Стили для легенды */
+.legend {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Стили для строк формы */
+.row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* Стили для меток */
+.label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Стили для инпутов */
+.input {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #7aaefc; /* Голубой цвет при фокусе */
+  outline: none;
+  box-shadow: 0 0 5px rgba(122, 174, 252, 0.5);
+}
+
+/* Стили для кнопки отправки */
+.submitButton {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #7aaefc; /* Основной голубой цвет кнопки */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #5a91f7; /* Темнее при наведении */
+  transform: translateY(-2px); /* Небольшой подъем */
+}
+
+.submitButton:active {
+  background-color: #4980e4; /* Ещё темнее при нажатии */
+  transform: translateY(0);
+}
+
+.submitButton2 {
+margin-top: 20px;
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #7aaefc; /* Основной голубой цвет кнопки */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submitButton2:hover {
+  background-color: #5a91f7; /* Темнее при наведении */
+  transform: translateY(-2px); /* Небольшой подъем */
+}
+
+.submitButton2:active {
+  background-color: #4980e4; /* Ещё темнее при нажатии */
+  transform: translateY(0);
+}
+
+/* Стили для сообщений об ошибках */
+.error {
+  color: #ff4d4f;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+}

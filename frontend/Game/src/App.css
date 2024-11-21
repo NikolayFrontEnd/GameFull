@@ -1,0 +1,292 @@
+a{
+    text-decoration: none;
+
+                                                
+}
+.l{
+    color: black;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.l:hover{
+    color: gray;
+}
+.small-image {
+    width: 33px; /* Ширина изображения */
+    height: auto; /* Сохраняем пропорции */
+    border-radius: 8px; /* Закругляем края, если нужно */
+    margin-right: 20px;
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.h{
+    font-family:  Impact;
+}
+.containerMain{
+    position: relative;
+    background-color: #f0f8ff; /* Светло-голубой фон */
+}
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px; /* для отступов */
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 25px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: flex;
+}
+.top-right:hover{
+color: gray;
+}
+/* Центрируем весь контент по горизонтали и вертикали */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+
+    font-family: 'Arial', sans-serif;
+}
+
+/* Стили для заголовка */
+h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+
+}
+
+/* Стили для текста под заголовком */
+.container div {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Стили для кнопок */
+.game-button {
+    background-color: #007bff; /* Голубой цвет кнопок */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 200px; /* Квадратная форма кнопки */
+    cursor: pointer;
+}
+
+/* Hover эффект для кнопок */
+.game-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap');
+
+/* Основной контейнер, центрируем все */
+.container2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    font-family: 'Roboto', sans-serif;
+    transition: backgound 0.5s ease-in-out;
+}
+
+/* Стиль для заголовка */
+h2, h3 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Плавное появление заголовков */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.container2 div, p {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Кнопки */
+.button2 {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Hover эффект для кнопок */
+.button2:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Поле ввода */
+input[type='number'], input[type='text'] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+    width: 200px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+input[type='number']:focus, input[type='text']:focus {
+    border-color: #0056b3;
+}
+
+/* Эффект плавного появления и исчезания */
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.1); }
+}
+
+/* Анимация плавного перехода между раундами */
+.round-change {
+    animation: fadeInOut 2s ease-in-out;
+}
+
+.cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f8ff; /* Светло-голубой фон */
+    animation: backgroundFadeIn 1s ease-in-out;
+}
+
+/* Анимация фона */
+@keyframes backgroundFadeIn {
+    from { background-color: #e0f7ff; }
+    to { background-color: #f0f8ff; }
+}
+
+/* Карточка профиля */
+.profile-card {
+    background: white;
+    padding: 50px 60px; /* Увеличенные отступы */
+    border-radius: 20px; /* Более округлые углы */
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15); /* Усиленная тень */
+    max-width: 500px; /* Увеличенная максимальная ширина */
+    width: 90%;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+/* Анимация появления карточки */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Заголовок профиля */
+.profile-title {
+    font-family: 'Pacifico', cursive; /* Сохраняем Pacifico для заголовка */
+    font-size: 3rem; /* Увеличенный размер шрифта */
+    color: #007bff;
+    margin-bottom: 40px; /* Увеличенный отступ снизу */
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Пункты профиля */
+.profile-item {
+    font-family: 'Montserrat', sans-serif; /* Используем Montserrat */
+    font-size: 1.5rem; /* Увеличенный размер шрифта */
+    color: #555;
+    margin: 15px 0; /* Увеличенные отступы */
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: fadeInLeft 0.5s forwards;
+}
+
+/* Последовательная задержка для пунктов */
+.profile-item:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.profile-item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.profile-item:nth-child(4) {
+    animation-delay: 0.5s;
+}
+
+.profile-item:nth-child(5) {
+    animation-delay: 0.6s;
+}
+
+.profile-item:nth-child(6) {
+    animation-delay: 0.7s;
+}
+
+/* Анимация появления слева */
+@keyframes fadeInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Кнопка назад */
+.back-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 30px; /* Увеличенные отступы */
+    font-size: 1.2rem; /* Увеличенный размер шрифта */
+    cursor: pointer;
+    margin-top: 25px; /* Увеличенный отступ сверху */
+    border-radius: 8px; /* Более округлые углы */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Усиленная тень */
+    animation: fadeIn2 1s ease-in-out 0.8s forwards;
+    opacity: 0;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Общие анимации */
+@keyframes fadeIn2 {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

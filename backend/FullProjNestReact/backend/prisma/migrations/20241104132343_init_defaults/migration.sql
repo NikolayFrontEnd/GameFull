@@ -1,0 +1,10 @@
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "score" SET DEFAULT 0,
+ALTER COLUMN "score" DROP DEFAULT,
+ALTER COLUMN "success" SET DEFAULT 0,
+ALTER COLUMN "success" DROP DEFAULT,
+ALTER COLUMN "unsuccess" SET DEFAULT 0,
+ALTER COLUMN "unsuccess" DROP DEFAULT;
+DROP SEQUENCE "User_score_seq";
+DROP SEQUENCE "User_success_seq";
+DROP SEQUENCE "User_unsuccess_seq";

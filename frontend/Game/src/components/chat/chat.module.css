@@ -1,0 +1,156 @@
+.container222 {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+  }
+  .header{
+    position: fixed; /* Фиксированное положение */
+    top: 0; /* Расположить элемент в верхней части экрана */
+    right: 0; /* Расположить элемент с левой стороны */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+width:75%;
+
+  }
+  .leftBar {
+    width: 25%;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .friendsList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .friendItem {
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #e9f2ff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .friendItem:hover {
+    background-color: #d0e4ff;
+  }
+  
+  .mainChat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #ffffff;
+    position: relative;
+  }
+  .btn123{
+    background-color: #6c757d; /* Серая заливка */
+    color: #ffffff; /* Белый цвет текста */
+    border: none; /* Убираем стандартную рамку */
+    padding: 10px 20px; /* Внутренние отступы для кнопки */
+    border-radius: 8px; /* Слегка закругляем углы */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    font-size: 16px; /* Размер текста */
+    font-weight: 500; /* Полужирный текст */
+    transition: background-color 0.3s, transform 0.2s; /* Плавные переходы для эффектов */
+    margin-bottom: 40px;
+  }
+  .btn123:hover{
+    background-color: #5a6268; /* Темнее при наведении */
+    transform: translateY(-2px); /* Легкий подъем при наведении */
+  }
+
+  .btn123:active {
+    background-color: #545b62; /* Еще темнее при нажатии */
+    transform: translateY(0); /* Возвращаем кнопку на место при нажатии */
+  }
+  .text2{
+    margin-bottom: 20px;
+  }
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 50px;
+  }
+  
+  .message {
+    max-width: 60%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    background-color: #e3f2fd;
+    position: relative;
+    word-wrap: break-word;
+  }
+  
+  .self {
+    background-color: #b2d6ff;
+    align-self: flex-end;
+  }
+  
+  footer {
+    display: flex;
+    padding: 10px 20px;
+    background-color: #f7f9fc;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #cbd5e0;
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    border-color: #007bff;
+  }
+  
+  .button111 {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+ .button111:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Дополнительные стили для адаптивности */
+  @media (max-width: 768px) {
+    .leftBar {
+      display: none;
+    }
+  
+    .mainChat {
+      width: 100%;
+    }
+  }
+
+  .timestamp {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    text-align: right;
+    margin-top: 5px;
+    display: block;
+  }

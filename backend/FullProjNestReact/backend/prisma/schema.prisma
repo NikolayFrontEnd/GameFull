@@ -1,0 +1,247 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  password   String
+  name       String?
+  score      Int       @default(0)
+  unsuccess  Int       @default(0) // Количество неуспешных игр
+  success    Int       @default(0) // Количество успешных игр
+
+  // Отправленные и полученные сообщения
+  sentMessages     Message[] @relation("SentMessages", fields: [], references: [])
+  receivedMessages Message[] @relation("ReceivedMessages", fields: [], references: [])
+}
+
+model Message {
+  id          Int      @id @default(autoincrement())
+  content     String   // Текст сообщения
+  createdAt   DateTime @default(now())
+  senderId    Int      // ID отправителя
+  receiverId  Int      // ID получателя
+
+  // Связь с отправителем
+  sender      User     @relation("SentMessages", fields: [senderId], references: [id])
+  // Связь с получателем
+  receiver    User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+}
+
+// Понял вас, давайте упростим и сосредоточимся на создании базового чата между двумя пользователями с использованием Nest.js и Socket.io, где сообщения передаются и сохраняются в базе данных.
+
+// Логика Чата: Простое Объяснение
+// Фронтенд:
+// Выводит всех пользователей.
+// При нажатии на пользователя открывается возможность отправить ему сообщение.
+// Бэкенд:
+// Поддерживает подключение через Socket.io.
+// Обрабатывает отправку и получение сообщений между двумя пользователями.
+// Сохраняет сообщения в базе данных.
+// Шаги для Реализации
+// Обновим нашу схему данных в Prisma для поддержки сообщений между пользователями.
+// Реализуем SocketService для управления сообщениями с использованием Socket.io.
+// 1. Обновление Схемы Prisma
+// Мы обновим модель Message для хранения сообщений между двумя пользователями.
+
+// schema.prisma:
+
+// prisma
+// Копировать код
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   email     String   @unique
+//   password  String
+//   name      String?
+//   messages  Message[] @relation("SentMessages")
+//   receivedMessages Message[] @relation("ReceivedMessages")
+// }
+
+// model Message {
+//   id          Int      @id @default(autoincrement())
+//   content     String   // Текст сообщения
+//   createdAt   DateTime @default(now())
+//   senderId    Int
+//   receiverId  Int
+//   sender      User     @relation("SentMessages", fields: [senderId], references: [id])
+//   receiver    User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+// }
+// Пояснение:
+
+// User: Модель пользователя с отношениями к отправленным и полученным сообщениям.
+// Message: Модель сообщения с полями senderId и receiverId, чтобы указывать, кто отправил и кому отправлено сообщение.
+// Применим миграцию Prisma:
+// bash
+// Копировать код
+// npx prisma migrate dev --name create_message_model
+// 2. Реализация SocketService для Управления Сообщениями
+// Теперь настроим SocketService для обработки событий Socket.io.
+
+// Создание SocketService
+// src/socket/socket.service.ts:
+
+// typescript
+// Копировать код
+// import {
+//   ConnectedSocket,
+//   MessageBody,
+//   OnGatewayConnection,
+//   OnGatewayDisconnect,
+//   SubscribeMessage,
+//   WebSocketGateway,
+//   WebSocketServer,
+// } from '@nestjs/websockets';
+// import { Server, Socket } from 'socket.io';
+// import { Injectable } from '@nestjs/common';
+// import { PrismaService } from '../prisma.service';
+
+// @WebSocketGateway({
+//   cors: {
+//     origin: '*',
+//   },
+// })
+// @Injectable()
+// export class SocketService implements OnGatewayConnection, OnGatewayDisconnect {
+//   @WebSocketServer() server: Server;
+
+//   constructor(private prisma: PrismaService) {}
+
+//   // Хранение пользователей и их сокетов
+//   private activeUsers: Map<number, Socket> = new Map();
+
+//   // Подключение пользователя
+//   handleConnection(client: Socket) {
+//     console.log(`Client connected: ${client.id}`);
+//     // Здесь ожидаем, что клиент отправит событие с токеном, чтобы мы могли связать сокет с пользователем
+//   }
+
+//   // Отключение пользователя
+//   handleDisconnect(client: Socket) {
+//     console.log(`Client disconnected: ${client.id}`);
+//     // Удаляем пользователя из activeUsers при отключении
+//     for (const [userId, socket] of this.activeUsers.entries()) {
+//       if (socket.id === client.id) {
+//         this.activeUsers.delete(userId);
+//         break;
+//       }
+//     }
+//   }
+
+//   // Аутентификация пользователя и сохранение его сокета
+//   @SubscribeMessage('authenticate')
+//   handleAuthenticate(@MessageBody() data: { userId: number }, @ConnectedSocket() client: Socket) {
+//     const { userId } = data;
+//     this.activeUsers.set(userId, client); // Сохраняем пользователя и его сокет
+//     client.emit('authenticated', { success: true });
+//     console.log(`User ${userId} authenticated`);
+//   }
+
+//   // Отправка сообщения
+//   @SubscribeMessage('send-message')
+//   async handleMessage(
+//     @MessageBody() data: { senderId: number; receiverId: number; content: string },
+//     @ConnectedSocket() client: Socket,
+//   ) {
+//     const { senderId, receiverId, content } = data;
+
+//     // Сохраняем сообщение в базе данных
+//     const message = await this.prisma.message.create({
+//       data: {
+//         content,
+//         senderId,
+//         receiverId,
+//       },
+//     });
+
+//     // Отправляем сообщение получателю, если он подключен
+//     const receiverSocket = this.activeUsers.get(receiverId);
+//     if (receiverSocket) {
+//       receiverSocket.emit('receive-message', message);
+//     }
+
+//     // Также отправляем сообщение отправителю для подтверждения
+//     client.emit('message-sent', message);
+//   }
+// }
+// 3. Настройка AppModule
+// Подключите SocketService и PrismaService в вашем AppModule.
+
+// src/app.module.ts:
+
+// typescript
+// Копировать код
+// import { Module } from '@nestjs/common';
+// import { SocketService } from './socket/socket.service';
+// import { PrismaService } from './prisma.service';
+
+// @Module({
+//   providers: [SocketService, PrismaService],
+// })
+// export class AppModule {}
+// 4. Фронтенд: Взаимодействие с Сервером
+// Аутентификация пользователя через Socket.io
+// После подключения пользователь должен отправить свой userId, чтобы сервер знал, кто подключён.
+
+// javascript
+// Копировать код
+// import io from 'socket.io-client';
+
+// const socket = io('http://localhost:3000');
+
+// // Аутентификация пользователя
+// const userId = 1; // ID текущего пользователя
+// socket.emit('authenticate', { userId });
+
+// socket.on('authenticated', (data) => {
+//   console.log('Authenticated:', data);
+// });
+// Отправка Сообщения
+// Когда пользователь хочет отправить сообщение другому пользователю, он отправляет событие send-message.
+
+// javascript
+// Копировать код
+// // Отправка сообщения
+// const sendMessage = (senderId, receiverId, content) => {
+//   socket.emit('send-message', { senderId, receiverId, content });
+// };
+
+// // Подтверждение отправки сообщения
+// socket.on('message-sent', (message) => {
+//   console.log('Message sent:', message);
+// });
+
+// // Получение сообщения
+// socket.on('receive-message', (message) => {
+//   console.log('New message received:', message);
+// });
+// 5. Подробное Объяснение Работы
+// Аутентификация пользователя:
+
+// Когда клиент подключается, он отправляет событие authenticate с userId.
+// Сервер сохраняет сокет пользователя в activeUsers, чтобы отслеживать, кто подключен.
+// Отправка сообщения:
+
+// Клиент отправляет событие send-message с senderId, receiverId и content.
+// Сервер сохраняет сообщение в базе данных.
+// Если получатель подключён, сообщение отправляется ему в реальном времени через Socket.io.
+// Отправителю также отправляется подтверждение.
+// Получение сообщения:
+
+// Получатель получает сообщение в реальном времени, если он онлайн.
+// Если получатель оффлайн, сообщение будет доступно в базе данных при следующем подключении.

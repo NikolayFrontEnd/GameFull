@@ -1,0 +1,115 @@
+:root {
+    --warm-blue: #007bff;
+    --warm-blue-light: #82c0e8;
+    --warm-blue-dark: #3d7aa4;
+    --button-hover: #4892c7;
+    --button-click: #316a8c;
+    --text-color: #ffffff;
+  }
+  
+  /* Container for the input and button */
+  .headerInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0;
+  }
+  
+  .input input {
+    padding: 12px;
+    width: 250px;
+    border: 2px solid var(--warm-blue-dark);
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input input:focus {
+    border-color: var(--warm-blue);
+  }
+  
+  /* Button styling */
+  .button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: var(--text-color);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+  }
+  
+  /* Hover and click effects for button */
+  .button:hover {
+    background-color: var(--button-hover);
+  }
+  
+  .button:active {
+    background-color: var(--button-click);
+    transform: scale(0.95);
+  }
+  
+  /* Styling for the users section */
+  .usersHeader {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .userCard {
+    margin: 10px 0;
+    padding: 12px;
+    background-color: #007bff;
+    color: var(--text-color);
+    border-radius: 5px;
+    text-align: center;
+
+    transition: background-color 0.3s ease;
+  }
+
+
+  .cards {
+    display: flex;
+    flex-direction: column; /* Keeps the cards in a vertical layout */
+    align-items: center; /* Centers the cards horizontally */
+    gap: 10px; /* Adds space between the cards */
+  }
+  
+  .userCard {
+    display: flex;
+    flex-direction: column; /* Ensures the elements inside are stacked vertically */
+    align-items: center; /* Centers the content inside the card */
+    background-color: #007bff;
+    padding: 20px;
+    border-radius: 10px;
+    color: #ffffff;
+    width: 300px; /* Adjust the width as needed */
+  }
+  
+  .box {
+    display: flex;
+    flex-direction: column; /* Stacks the name and points vertically */
+    align-items: center; /* Centers the content within the box */
+    gap: 5px; /* Adds space between the name and points */
+  }
+  
+  .btn {
+    margin-top: 10px; /* Adds space between the button and the text */
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: #007bff;
+    border: dashed 3px white;
+    padding: 6px 6px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  
+  .btn:hover {
+    border: solid 3px white;
+    background-color: #0056b3;
+  }
+  
